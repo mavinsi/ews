@@ -1,9 +1,9 @@
-
  <head>
-   <title>Registro - EWS</title>
+   <title>Login - EWS</title>
  </head>
 <style>
-    @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&display=swap');
+
 
 .login-page {
   width: 360px;
@@ -22,21 +22,22 @@
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .form input {
-  font-family: "Roboto", sans-serif;
+    font-family: 'Montserrat', sans-serif;
   outline: 0;
   background: #f2f2f2;
   width: 100%;
   border: 0;
   margin: 0 0 15px;
+  text-align: center;
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
 }
 .form button {
-  font-family: "Roboto", sans-serif;
+    font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #895eca;
+  background: #6c5194;
   width: 100%;
   border: 0;
   padding: 15px;
@@ -97,33 +98,50 @@
 body {
 background:#754eaf;
 background-color:#754eaf;
-  font-family: "Roboto", sans-serif;
+    font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
 }
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+    font-family: 'Montserrat', sans-serif;
+   display: none;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+   
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
 </style>
-    <a style="text-decoration: none; color:white;"href="../">🠜 VOLTAR PARA O INICIO</a>
+<div name="alerta" class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  <strong>Error!</strong> {{messagem_error}} 
+</div>
 <div class="login-page">
   <div class="form">
-   <form action="/acao_cadastro" method="post">
-    <a href="./"><img width="200px"src="/images/logo.png"></a>
-        <br> <br>
-    <input type="text" name="nome"  placeholder="Seu Usuario"> <br>
-    <input type="e-mail" name="email" placeholder="Seu E-Mail"><br>
-        <input type="password" name="pass" id="pass" placeholder="Sua Senha">        
+   
+     <img width="200px"src="/images/logo.png">
 <br><br>
-   <button type="submit">Cadastrar Carteira</button>  
-     <p class="message">Já possui uma conta? <a href="/login">Entrar na minha carteira</a></p>
+
+    <hr>
+     <br> 
+ <button onclick="window.location='./login';">Minha carteira</button>
+     <br> <br>
+      <button onclick="window.location='./view';">Visualizar carteira</button>
+           <br> <br>
+  <button onclick="window.location='./registrar';">Criar carteira</button>
   </div>
 </div>
-
-<script>
-function myFunction() {
-  var x = document.getElementById("pass");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-}
-</script>

@@ -1,9 +1,9 @@
-
  <head>
-   <title>Registro - EWS</title>
+   <title>View - EWS</title>
  </head>
 <style>
     @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
 
 .login-page {
   width: 360px;
@@ -36,7 +36,7 @@
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #895eca;
+  background: #6c5194;
   width: 100%;
   border: 0;
   padding: 15px;
@@ -101,29 +101,39 @@ background-color:#754eaf;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
 }
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+    font-family: "Roboto", sans-serif;
+   display: none;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+   
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
 </style>
     <a style="text-decoration: none; color:white;"href="../">🠜 VOLTAR PARA O INICIO</a>
 <div class="login-page">
   <div class="form">
-   <form action="/acao_cadastro" method="post">
-    <a href="./"><img width="200px"src="/images/logo.png"></a>
-        <br> <br>
-    <input type="text" name="nome"  placeholder="Seu Usuario"> <br>
-    <input type="e-mail" name="email" placeholder="Seu E-Mail"><br>
-        <input type="password" name="pass" id="pass" placeholder="Sua Senha">        
-<br><br>
-   <button type="submit">Cadastrar Carteira</button>  
-     <p class="message">Já possui uma conta? <a href="/login">Entrar na minha carteira</a></p>
-  </div>
-</div>
-
-<script>
-function myFunction() {
-  var x = document.getElementById("pass");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-}
-</script>
+<form action="/view" method="post">
+   <img width="200px"src="/images/logo.png">
+   <br><br>
+    <input type="text" name="address"  placeholder="Endereço de uma carteira"> <br>
+    <button type="submit">Visualizar</button>
+    <br> <br>
+    </form>
+    </div>  
+    </div>

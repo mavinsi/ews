@@ -101,12 +101,40 @@ background-color:#754eaf;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
 }
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+    font-family: "Roboto", sans-serif;
+   display: none;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+   
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
 </style>
+<div name="alerta" class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  <strong>Error!</strong> {{messagem_error}} 
+</div>
+    <a style="text-decoration: none; color:white;"href="../">🠜 VOLTAR PARA O INICIO</a>
 <div class="login-page">
   <div class="form">
      <form action="/logado" method="post">
-     <img width="200px"src="/images/logo.png">
-<br><br>
+   <a href="./"><img width="200px"src="/images/logo.png"></a>
+<br><br>  
       <input type="text" name="nome" placeholder="Usuario"/>
       <input type="password" name="pass" placeholder="Senha"/>
       <button>Logar</button>

@@ -1,11 +1,27 @@
 {
   "wallets": [
     {
+      "id": "43355",
+      "address": "markyndev@ews",
       "name": "markyndev",
       "email": "markynrodrisilva@gmail.com",
-      "admin": false,
+      "groups": [
+        "client"
+      ],
       "currency": 0,
-      "pass": "U2FsdGVkX1/JWSXplHbDvhNw4+5+QNUMVzDspaF7wAzjWpEYYcZ63P9FqMs/7DLi"
+      "pass": "U2FsdGVkX19RymB4iX894QvtBMTyJpU6XV3GpfnsOVwwb4q7CecBT5G/7QT2FxeU"
+    },
+    {
+      "id": "97288",
+      "address": "Davi@ews",
+      "name": "Davi",
+      "email": "mrt.daviid@gmail.com",
+      "groups": [
+        "client"
+      ],
+      "currency": 0,
+      "pass": "U2FsdGVkX19AAu1ykbyxW+qnRutbhhO7i0Jwbdtw4epiQ9BKWmXDTmsJ3VgL/ovU"
     }
-  ]
+  ],
+  "posts": []
 }
