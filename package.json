@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "crypto-js": "^4.1.1",
+    "express": "^4.17.2",
+    "express-handlebars": "^6.0.2",
+    "lowdb": "^1.0.0",
+    "nedb": "^1.8.0",
+    "rangen": "^1.0.0"
+  }
+}

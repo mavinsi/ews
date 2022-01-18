@@ -1,0 +1,11 @@
+{
+  "wallets": [
+    {
+      "name": "markyndev",
+      "email": "markynrodrisilva@gmail.com",
+      "admin": false,
+      "currency": 0,
+      "pass": "U2FsdGVkX1/JWSXplHbDvhNw4+5+QNUMVzDspaF7wAzjWpEYYcZ63P9FqMs/7DLi"
+    }
+  ]
+}

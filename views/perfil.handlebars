@@ -1,0 +1,68 @@
+<head>
+    <title>Seu Perfil - EWS</title>
+</head>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,700&display=swap');
+    .card {
+        position: relative;
+        z-index: 1;
+        background: #FFFFFF;
+        max-width: 560px;
+        margin: 0 auto 100px;
+        padding: 45px;
+        text-align: center;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+.card button {
+    font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #6c5194;
+  width: 100%;
+
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.card button:hover {
+  background: #533e72;
+}
+
+body {
+background:#754eaf;
+background-color:#754eaf;
+    font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;      
+}
+.currency{
+font-family: 'Roboto Condensed', sans-serif;
+}
+    .user-page {
+        width: 500px;
+        padding: 8% 0 0;
+        margin: auto;
+    }
+</style>
+
+<body>
+    <div class="user-page">
+        <div class="card">
+              <img width="200px"src="/images/profile.png">
+        <br> <br>
+            <h1>Hello, {{nome}}!</h1>
+            <h2>Currency:</h2>
+<h2  class="currency"style="color:#a66bff;"><b>{{saldo}} LOZ</b></h2>
+
+<button>Tranfer</button>
+<br><br>
+<button>Generate</button>
+        </div>
+    </div>
+</body>
