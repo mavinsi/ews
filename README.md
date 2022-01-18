@@ -1,2 +1,2 @@
 # ews
-Encrypted wallet system, for transfer and receipt.
+💱 Encrypted wallet system, for transfer and receipt.
