@@ -41,24 +41,29 @@ background-color:#754eaf;
 }
 .currency{
 font-family: 'Roboto Condensed', sans-serif;
+    font-size: 40px;
+}
+h1{
+    
+    
+    font-family: 'Montserrat', sans-serif;
 }
     .user-page {
-        width: 75%;
-        padding: 8% 0 0;
+        width: 90%;
+        padding: 3% 0 0;
         margin: auto;
     }
 </style>
 
 <body>
-    <a style="text-decoration: none; color:white;"href="../">🠜 VOLTAR PARA O INICIO</a>
+    <a style="text-decoration: none; color:white;"href="../">🠜 VOLTAR PARA O LOGIN</a>
     <div class="user-page">
         <div class="card">
               <img width="200px"src="/images/profile.png">
         <br> <br>
-            <h1>Wallet of {{nome}}!</h1>
-            
-<h2  class="currency"style="color:#a66bff;"><b>{{saldo}} LOZ</b></h2>
-<p>Address: {{address}}</p>
+            <h1>Carteira de {{nome}}</h1>
+<h1  class="currency"style="color:#a66bff;"><b>{{saldo}} LOZ</b></h1>
+<p>Endereço EWS: {{address}}</p>
         </div>
         
     </div>

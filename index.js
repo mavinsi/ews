@@ -53,7 +53,6 @@ app.post('/view', function (req, res) {
 })
 
 app.get('/wallet/:address', function (req, res) {
-    console.log(req.params.address)
     if (db.get('wallets')
     .some(user => user.name === req.params.address)
     .value() === true) {
@@ -91,7 +90,7 @@ app.post('/logado', function (req, res) {
                         if (db.get('wallets')
                         .some(user => user.name === alvo)
                         .value() === true) {
-                            console.log(alvo)
+                    
                             if(user.currency >= valor){
                                 let dbalvo = db
                                 .get("wallets")
@@ -99,7 +98,7 @@ app.post('/logado', function (req, res) {
                                 .value();
                                 let real_value = Number(dbalvo.currency) + Number(valor)
                                 let me_value = Number(user.currency) - Number(valor)
-                                console.log(real_value)
+                             
                                 db.get("wallets")
                                 .find({ name: user.name })
                                 .assign({currency: me_value})
@@ -108,17 +107,18 @@ app.post('/logado', function (req, res) {
                                 .find({ name: alvo })
                                 .assign({currency: real_value})
                                 .write();
-                                res.render('./aviso', {message: `Sua transferência de ${valor} LOZ para ${alvo} foi aprovada!`,re_page: "./login",image: "cash_done.png"})
+                                res.render('./aviso', {message: `Sua transferência de ${valor} LOZ para ${alvo} foi aprovada!`,re_page: "javascript:history.back()",image: "cash_done.png"})
+                                console.log(`[SERVER] Transferencia de ${valor} de ${user.name} para ${alvo}`)
                             }else{
-                                res.render('./aviso', {message: `Sua transferência de ${valor} LOZ para ${alvo} foi negada! (Saldo insuficiente)`,re_page: "./login",image: "error.png"})
+                                res.render('./aviso', {message: `Sua transferência de ${valor} LOZ para ${alvo} foi negada! (Saldo insuficiente)`,re_page: "javascript:history.back()",image: "error.png"})
                             }
                
                             
                         }else{
-                            res.send('<script>window.alert("Esse Usuario não existe!"); window.location.replace("../login");</script>')
-                            res.render('./aviso', {message: `Este usuario não existe!`,re_page: "./login",image: "error.png"})
+                            res.render('./aviso', {message: `Este usuario não existe!`,re_page: "javascript:history.back()",image: "error.png"})
                         }
                     }else {
+                        console.log(`[SERVER] ${user.name} errou sua senha, reiniciando login.`)
                         res.render('./aviso', {message: `Senha incorreta!`,re_page: "./login",image: "error.png"})
                     }
 
@@ -128,7 +128,7 @@ app.post('/logado', function (req, res) {
             res.render('./aviso', {message: `Senha incorreta!`,re_page: "./login",image: "error.png"})
         }
     } else {
-        res.send('<script>window.alert("Esse usuario não existe!"); window.location.replace("./");</script>')
+        res.render('./aviso', {message: `Este usuario não existe!`,re_page: "./login",image: "error.png"})
     }
 })
 
@@ -137,9 +137,6 @@ app.post('/logado', function (req, res) {
 app.post('/acao_cadastro', function (req, res) {
     let receber = req.body
     const gerar_token = rg.id({ length: 20, charSet: 'alphanum' });
-    console.log(db.get('wallets')
-        .some(user => user.name === receber.nome)
-        .value())
     if (db.get('wallets')
         .some(user => user.name === receber.nome)
         .value() === false) {
@@ -161,16 +158,16 @@ app.post('/acao_cadastro', function (req, res) {
 
             res.render('./aviso', {message: `Você criou uma carteira com sucesso!`,re_page: "./login",image: "wallet_done.png"})
         } else {
-            res.render('./aviso', {message: `Este email já está registrado!`,re_page: "./login",image: "error.png"})
+            res.render('./aviso', {message: `Este email já está registrado!`,re_page: "javascript:history.back()",image: "error.png"})
         }
     } else {
-        res.render('./aviso', {message: `Este usuario está registrado!`,re_page: "./login",image: "error.png"})
+        res.render('./aviso', {message: `Este usuario está registrado!`,re_page: "javascript:history.back()",image: "error.png"})
 
     }
 })
 
 
 // Respostas servidor
-app.listen(3025, '26.71.86.0', function () {
+app.listen(3025, '192.168.1.69', function () {
     console.log("Servidor Rodando http://192.168.1.69:3025")
 })

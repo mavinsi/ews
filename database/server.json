@@ -8,7 +8,7 @@
       "groups": [
         "client"
       ],
-      "currency": 1,
+      "currency": 657.49,
       "pass": "U2FsdGVkX19RymB4iX894QvtBMTyJpU6XV3GpfnsOVwwb4q7CecBT5G/7QT2FxeU"
     },
     {
@@ -19,8 +19,19 @@
       "groups": [
         "client"
       ],
-      "currency": 1055643,
+      "currency": 1055973,
       "pass": "U2FsdGVkX19AAu1ykbyxW+qnRutbhhO7i0Jwbdtw4epiQ9BKWmXDTmsJ3VgL/ovU"
+    },
+    {
+      "id": "83464",
+      "address": "chico@ews",
+      "name": "chico",
+      "email": "afdsddfdsf",
+      "groups": [
+        "client"
+      ],
+      "currency": 50,
+      "pass": "U2FsdGVkX1/+ktYqAX+EiLH8M1dN992xgFUiwI4ppkCYFlzio2/20Pe6B0pdCC90"
     }
   ],
   "posts": []

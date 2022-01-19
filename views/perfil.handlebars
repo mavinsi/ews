@@ -3,8 +3,8 @@
 </head>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap');
     .card {
         position: relative;
         z-index: 1;
@@ -18,9 +18,9 @@
   text-transform: uppercase;
   outline: 0;
   background: #6c5194;
-  width: 50%;
+  width: 70%;
   border: 0;
-  padding: 15px;
+  padding: 20px;
   color: #FFFFFF;
   font-size: 14px;
   -webkit-transition: all 0.3 ease;
@@ -39,7 +39,7 @@ background-color:#754eaf;
   -moz-osx-font-smoothing: grayscale;      
 }
 .currency{
-font-family: 'Roboto Condensed', sans-serif;
+font-family: 'Roboto', sans-serif;
 }
     .user-page {
         width: 80%;
@@ -48,28 +48,39 @@ font-family: 'Roboto Condensed', sans-serif;
     }
       @media only screen and (orientation: portrait) {
               .user-page {
-        width: 75%;
-        padding: 2% 0 0;
+        width: 95%;
+
         margin: auto;
     }
+    .card button {
+  width: 90%;
+  padding: 22px;
+
       }
+      } 
 </style>
 
 <body>
-    <a style="text-decoration: none; color:white;"href="../">🠜 VOLTAR PARA O INICIO</a>
+    <a style="text-decoration: none; color:white;"href="../">🠜 VOLTAR PARA O LOGIN</a>
     <div class="user-page">
         <div class="card">
               <img width="200px"src="/images/profile.png">
         <br> <br>
-            <h1>Hello, {{nome}}!</h1>
+            <h1>Ola, {{nome}}!</h1>
             
-<h2  class="currency"style="color:#a66bff;"><b>{{saldo}} LOZ</b></h2>
+<h1  class="currency"style="color:#a66bff;"><b>{{saldo}} LOZ</b></h1>
 
-<button onclick="window.location='./logado/transfer';">Tranfer</button>
-<br><br>
-<p>Address: {{address}}</p>
-        </div>
-        
+<p>{{address}}</p>
+        </div> 
     </div>
-    
+        <div class="user-page">
+        <div class="card">
+
+             <button onclick="window.location='./logado/transfer';">Editar perfil</button>
+            <br><br>
+            <button onclick="window.location='./logado/transfer';">Transferir</button>
+            <br><br>
+            <button onclick="window.location='./logado/transfer';">Receber</button>
+            </div>  
+            </div>
 </body>
