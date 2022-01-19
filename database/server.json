@@ -8,7 +8,7 @@
       "groups": [
         "client"
       ],
-      "currency": 0,
+      "currency": 1,
       "pass": "U2FsdGVkX19RymB4iX894QvtBMTyJpU6XV3GpfnsOVwwb4q7CecBT5G/7QT2FxeU"
     },
     {
@@ -19,7 +19,7 @@
       "groups": [
         "client"
       ],
-      "currency": 0,
+      "currency": 1055643,
       "pass": "U2FsdGVkX19AAu1ykbyxW+qnRutbhhO7i0Jwbdtw4epiQ9BKWmXDTmsJ3VgL/ovU"
     }
   ],

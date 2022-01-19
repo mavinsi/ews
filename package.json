@@ -6,6 +6,7 @@
     "express-handlebars": "^6.0.2",
     "lowdb": "^1.0.0",
     "nedb": "^1.8.0",
-    "rangen": "^1.0.0"
+    "rangen": "^1.0.0",
+    "sweetalert": "^2.1.2"
   }
 }

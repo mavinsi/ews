@@ -1,7 +1,7 @@
 //FrameWorks
 
 const low = require('lowdb')
-
+const swal = require("sweetalert")
 var CryptoJS = require("crypto-js");
 const express = require("express");
 const app = express();
@@ -43,12 +43,10 @@ app.get('/login', function (req, res) {
 })
 app.get('/', function (req, res) {
     res.render('./home')
-
 })
 
 app.get('/view', function (req, res) {
     res.render('./view')
-
 })
 app.post('/view', function (req, res) {
     res.send(`<script>window.location.replace("./wallet/${req.body.address}");</script>`)
@@ -66,7 +64,7 @@ app.get('/wallet/:address', function (req, res) {
 
 res.render('./wallet', {nome: user.name,saldo: user.currency, address: user.address})
     }else{
-        res.send(`CARTEIRA NÃO EXISTE`)
+        res.render('./aviso', {message: `Está carteira não existe!`,re_page: "../view",image: "error.png"})
     }
 })
 // Pagina perfil
@@ -82,8 +80,52 @@ app.post('/logado', function (req, res) {
         if (senha.toString(CryptoJS.enc.Utf8) == "senha_verdadeira") {
             res.render('./perfil', { nome: user.name, email: user.email, saldo: user.currency, address: user.address, id: user.id })
             console.log(`[SERVER] ${user.name}@ews acessou sua carteira`)
+            app.get('/logado/transfer', function (req, res) {
+                res.render('./transfer', { nome: user.name, email: user.email, saldo: user.currency, address: user.address, id: user.id })
+                app.post('/acao_transfer', function (req, res) {
+                    let alvo = req.body.destino
+                    let valor = req.body.valor
+                    let pass = req.body.senha
+                    var senha2 = CryptoJS.AES.decrypt(user.pass, pass)
+                    if (senha2.toString(CryptoJS.enc.Utf8) == "senha_verdadeira") {
+                        if (db.get('wallets')
+                        .some(user => user.name === alvo)
+                        .value() === true) {
+                            console.log(alvo)
+                            if(user.currency >= valor){
+                                let dbalvo = db
+                                .get("wallets")
+                                .find({ name: alvo })
+                                .value();
+                                let real_value = Number(dbalvo.currency) + Number(valor)
+                                let me_value = Number(user.currency) - Number(valor)
+                                console.log(real_value)
+                                db.get("wallets")
+                                .find({ name: user.name })
+                                .assign({currency: me_value})
+                                .write();
+                                db.get("wallets")
+                                .find({ name: alvo })
+                                .assign({currency: real_value})
+                                .write();
+                                res.render('./aviso', {message: `Sua transferência de ${valor} LOZ para ${alvo} foi aprovada!`,re_page: "./login",image: "cash_done.png"})
+                            }else{
+                                res.render('./aviso', {message: `Sua transferência de ${valor} LOZ para ${alvo} foi negada! (Saldo insuficiente)`,re_page: "./login",image: "error.png"})
+                            }
+               
+                            
+                        }else{
+                            res.send('<script>window.alert("Esse Usuario não existe!"); window.location.replace("../login");</script>')
+                            res.render('./aviso', {message: `Este usuario não existe!`,re_page: "./login",image: "error.png"})
+                        }
+                    }else {
+                        res.render('./aviso', {message: `Senha incorreta!`,re_page: "./login",image: "error.png"})
+                    }
+
+                })
+            })
         } else {
-            res.send('<script>window.alert("Senha incorreta!"); window.location.replace("./");</script>')
+            res.render('./aviso', {message: `Senha incorreta!`,re_page: "./login",image: "error.png"})
         }
     } else {
         res.send('<script>window.alert("Esse usuario não existe!"); window.location.replace("./");</script>')
@@ -116,12 +158,13 @@ app.post('/acao_cadastro', function (req, res) {
                     pass: CryptoJS.AES.encrypt("senha_verdadeira", receber.pass).toString()
                 }).write();
                 console.log(`[SERVER] Nova carteira criada, ${receber.nome}@ews`)
-            res.send('<script> window.location.replace("./login");</script>')
+
+            res.render('./aviso', {message: `Você criou uma carteira com sucesso!`,re_page: "./login",image: "wallet_done.png"})
         } else {
-            res.send('<script>window.alert("Esse endereço (C-MAIL) já foi adquirido!"); window.location.replace("./registrar");</script>')
+            res.render('./aviso', {message: `Este email já está registrado!`,re_page: "./login",image: "error.png"})
         }
     } else {
-        res.send('<script>window.alert("Esse usuario já existe!"); window.location.replace("./registrar");</script>')
+        res.render('./aviso', {message: `Este usuario está registrado!`,re_page: "./login",image: "error.png"})
 
     }
 })

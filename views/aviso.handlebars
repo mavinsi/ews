@@ -126,22 +126,13 @@ background-color:#754eaf;
   color: black;
 }
 </style>
-<div name="alerta" class="alert">
-  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-  <strong>Error!</strong> {{messagem_error}} 
-</div>
 <div class="login-page">
   <div class="form">
    
-     <img width="200px"src="/images/logo.png">
+     <img width="150px"src="/images/{{image}}">
 <br><br>
-
-    <hr>
-     <br> 
- <button onclick="window.location='./login';">Minha Carteira</button>
-     <br> <br>
-      <button onclick="window.location='./view';">Visualizar uma carteira</button>
-           <br> <br>
-  <button onclick="window.location='./registrar';">Criar uma carteira</button>
+<p style="font-size: 25px; color:#754eaf;">{{message}}</p>
+<br><br>
+<button onclick="window.location='./{{re_page}}';">Retornar</button>
   </div>
 </div>
