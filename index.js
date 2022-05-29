@@ -42,7 +42,7 @@ app.get('/login', function (req, res) {
 
 })
 app.get('/', function (req, res) {
-    res.render('./home')
+    res.send(`<script>window.location.replace("./login");</script>`)
 })
 
 app.get('/view', function (req, res) {
@@ -67,7 +67,7 @@ res.render('./wallet', {nome: user.name,saldo: user.currency, address: user.addr
     }
 })
 // Pagina perfil
-app.post('/logado', function (req, res) {
+app.post('/profile', function (req, res) {
     if (db.get('wallets')
         .some(user => user.name === req.body.nome)
         .value() === true) {
@@ -76,17 +76,19 @@ app.post('/logado', function (req, res) {
             .find({ name: req.body.nome })
             .value()
         var senha = CryptoJS.AES.decrypt(user.pass, req.body.pass)
-        if (senha.toString(CryptoJS.enc.Utf8) == "senha_verdadeira") {
+        if (senha.toString(CryptoJS.enc.Utf8) == user.id+user.name+req.body.pass) {
             res.render('./perfil', { nome: user.name, email: user.email, saldo: user.currency, address: user.address, id: user.id })
             console.log(`[SERVER] ${user.name}@ews acessou sua carteira`)
-            app.get('/logado/transfer', function (req, res) {
+            app.get('/profile/transfer', function (req, res) {
                 res.render('./transfer', { nome: user.name, email: user.email, saldo: user.currency, address: user.address, id: user.id })
-                app.post('/acao_transfer', function (req, res) {
+                app.post('/profile/transfer', function (req, res) {
                     let alvo = req.body.destino
                     let valor = req.body.valor
                     let pass = req.body.senha
                     var senha2 = CryptoJS.AES.decrypt(user.pass, pass)
-                    if (senha2.toString(CryptoJS.enc.Utf8) == "senha_verdadeira") {
+                    console.log(senha2.toString(CryptoJS.enc.Utf8))
+                    console.log(user.id+user.name+req.body.senha)
+                    if (senha2.toString(CryptoJS.enc.Utf8) == user.id+user.name+req.body.senha) {
                         if (db.get('wallets')
                         .some(user => user.name === alvo)
                         .value() === true) {
@@ -107,7 +109,7 @@ app.post('/logado', function (req, res) {
                                 .find({ name: alvo })
                                 .assign({currency: real_value})
                                 .write();
-                                res.render('./aviso', {message: `Sua transferência de ${valor} LOZ para ${alvo} foi aprovada!`,re_page: "javascript:history.back()",image: "cash_done.png"})
+                                res.render('./aviso', {message: `Sua transferência de ${valor} LOZ para ${alvo} foi aprovada!`,re_page: "javascript:history.go(-2)",image: "cash_done.png"})
                                 console.log(`[SERVER] Transferencia de ${valor} de ${user.name} para ${alvo}`)
                             }else{
                                 res.render('./aviso', {message: `Sua transferência de ${valor} LOZ para ${alvo} foi negada! (Saldo insuficiente)`,re_page: "javascript:history.back()",image: "error.png"})
@@ -119,7 +121,7 @@ app.post('/logado', function (req, res) {
                         }
                     }else {
                         console.log(`[SERVER] ${user.name} errou sua senha, reiniciando login.`)
-                        res.render('./aviso', {message: `Senha incorreta!`,re_page: "./login",image: "error.png"})
+                        res.render('./aviso', {message: `Senha incorreta, por favor logue-se novamente!`,re_page: "../",image: "error.png"})
                     }
 
                 })
@@ -134,7 +136,7 @@ app.post('/logado', function (req, res) {
 
 
 
-app.post('/acao_cadastro', function (req, res) {
+app.post('/registrar', function (req, res) {
     let receber = req.body
     const gerar_token = rg.id({ length: 20, charSet: 'alphanum' });
     if (db.get('wallets')
@@ -152,9 +154,9 @@ app.post('/acao_cadastro', function (req, res) {
                     email: receber.email,
                     groups: ["client"],
                     currency: 0,
-                    pass: CryptoJS.AES.encrypt("senha_verdadeira", receber.pass).toString()
+                    pass: CryptoJS.AES.encrypt(gen_id+receber.nome+receber.pass, receber.pass).toString()
                 }).write();
-                console.log(`[SERVER] Nova carteira criada, ${receber.nome}@ews`)
+                console.log(`[Server] Nova carteira criada, ${receber.nome}@ews`)
 
             res.render('./aviso', {message: `Você criou uma carteira com sucesso!`,re_page: "./login",image: "wallet_done.png"})
         } else {
@@ -168,6 +170,6 @@ app.post('/acao_cadastro', function (req, res) {
 
 
 // Respostas servidor
-app.listen(3025, '192.168.1.69', function () {
-    console.log("Servidor Rodando http://192.168.1.69:3025")
-})
+// Respostas servidor
+const port = 3000;
+app.listen(process.env.PORT || port, () => console.log(`[Server] Status online: localhost:${port}`));
